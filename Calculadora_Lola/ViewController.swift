@@ -19,8 +19,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var texto_a_cambiar: UILabel!
     
     
-    @IBAction func que_hacer_pushar_btn(_ sender: Any) {
-        texto_a_cambiar.text = "Bienvenidos a Himalaya"
+    @IBAction func que_hacer_pushar_btn(_ sender: UIButton) {
+        
+        texto_a_cambiar.text = sender.titleLabel!.text ?? "Nosupe"
+        
     }
 }
 
