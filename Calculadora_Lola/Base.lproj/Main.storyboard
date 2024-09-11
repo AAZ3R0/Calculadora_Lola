@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-gs-cLm">
-                                <rect key="frame" x="85" y="464.00000000000006" width="222.66666666666669" height="167.33333333333343"/>
+                                <rect key="frame" x="85" y="464" width="222.66666666666669" height="167.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="dTn-S8-qGd">
                                         <rect key="frame" x="0.0" y="0.0" width="34.666666666666664" height="167.33333333333334"/>
@@ -175,6 +175,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="/"/>
                                                 <connections>
+                                                    <action selector="boton_escoger_operacion_pulsado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oH2-H5-KcT"/>
                                                     <action selector="que_hacer_pushar_btn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vs8-ru-hvw"/>
                                                 </connections>
                                             </button>
@@ -197,6 +198,7 @@
                     <connections>
                         <outlet property="boton_operacion" destination="Plb-Vb-DdD" id="PNm-ah-3v6"/>
                         <outlet property="texto_a_cambiar" destination="7hb-qF-1fN" id="KLg-sU-CIg"/>
+                        <outlet property="vista_stack" destination="hCE-gs-cLm" id="tLu-P1-ss0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
