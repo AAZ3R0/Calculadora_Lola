@@ -14,6 +14,7 @@ struct IUBotonCalculadora {
     var referencia_a_boton_interfaz: UIButton?
     var numero: Character
     var operacion: String
+    
     init(numero: Character, operacion: String) {
         self.referencia_a_boton_interfaz = nil
         self.numero = numero

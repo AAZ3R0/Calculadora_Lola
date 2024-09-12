@@ -7,106 +7,151 @@
 
 import UIKit
 
-enum estados_de_la_calculadora{
-    case seleccionar_numeros
-    case escoger_operacion
-    case mostrar_resultado
-}
-
 class ViewController: UIViewController {
-    var estado_actual: estados_de_la_calculadora = estados_de_la_calculadora.seleccionar_numeros
     
-    @IBOutlet weak var texto_a_cambiar: UILabel!
-    @IBOutlet weak var boton_operacion: UIButton!
-    @IBOutlet weak var vista_stack: UIStackView!
+    var operación = 0
+    var v1 = ""
+    var v2 = ""
     
-    var botones_interfaz: Dictionary<String, IUBotonCalculadora> = [:]
-    var operacion_actual: String? = nil
+    @IBOutlet weak var Pantalla: UITextField!
+    
+    @IBOutlet weak var b7: UIButton!
+    
+    @IBOutlet weak var b4: UIButton!
+    
+    @IBOutlet weak var b1: UIButton!
+    
+    @IBOutlet weak var b8: UIButton!
+    
+    @IBOutlet weak var b5: UIButton!
+    
+    @IBOutlet weak var b2: UIButton!
+    
+    @IBOutlet weak var b9: UIButton!
+    
+    @IBOutlet weak var b6: UIButton!
+    
+    @IBOutlet weak var b3: UIButton!
+    
+    @IBOutlet weak var b0: UIButton!
+    
+    @IBOutlet weak var blimpiar: UIButton!
+    
+    @IBOutlet weak var bdividir: UIButton!
+    
+    @IBOutlet weak var bmultip: UIButton!
+    
+    @IBOutlet weak var brestar: UIButton!
+    
+    @IBOutlet weak var bsumar: UIButton!
+    
+    @IBOutlet weak var bresultado: UIButton!
+    
+    @IBOutlet weak var bpunto: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        inicializar_calculadora()
     }
     
     
-    /// Description
-    /// - Parameter sender: sender description
     
-    @IBAction func que_hacer_pushar_btn(_ sender: UIButton) {
-        if(estado_actual == estados_de_la_calculadora.seleccionar_numeros){
-            let text_a_añadir = botones_interfaz[(sender.restorationIdentifier ?? boton_operacion.restorationIdentifier) ?? "boton"]?.numero
-            
-            texto_a_cambiar.text = "\(texto_a_cambiar.text ?? "")\(text_a_añadir!)"
+    @IBAction func a7(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "7"
+    }
+    
+    
+    @IBAction func a4(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "4"
+    }
+    
+    
+    @IBAction func a1(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "1"
+    }
+    
+    
+    @IBAction func a8(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "8"
+    }
+    
+    
+    @IBAction func a5(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "5"
+    }
+    
+    
+    @IBAction func a2(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "2"
+    }
+    
+    
+    @IBAction func a9(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "9"
+    }
+    
+    
+    @IBAction func a6(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "6"
+    }
+    
+    
+    @IBAction func a3(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "3"
+    }
+    
+    
+    @IBAction func a0(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "0"
+    }
+    
+    
+    @IBAction func ablimpiar(_ sender: Any) {
+    }
+    
+    
+    @IBAction func abdividir(_ sender: Any) {
+        v1 = Pantalla.text!
+        operación = 4
+        Pantalla.text = ""
+    }
+    
+    
+    @IBAction func abmultip(_ sender: Any) {
+        v1 = Pantalla.text!
+        operación = 3
+        Pantalla.text = ""
+    }
+    
+    
+    @IBAction func abrestar(_ sender: Any) {
+        v1 = Pantalla.text!
+        operación = 2
+        Pantalla.text = ""
+    }
+    
+    
+    @IBAction func absumar(_ sender: Any) {
+        v1 = Pantalla.text!
+        operación = 1
+        Pantalla.text = ""
+    }
+    
+    
+    @IBAction func abresultado(_ sender: Any) {
+        v2 = Pantalla.text!
+        switch operación{
+        case 1:
+            let valor1 = (Int(v1)!)
+            let valor2 = (Int(v2)!)
+            let resultado = valor1 + valor2
+            Pantalla.text = (String(resultado)!)
+            break
         }
-        else if (estado_actual == estados_de_la_calculadora.escoger_operacion){
-            if let _mensajero: UIButton? = sender{
-                operacion_actual = botones_interfaz[_mensajero!.restorationIdentifier ?? "btn_0"]?.operacion
-            }
-            else {
-                operacion_actual = nil
-            }
-        }
+    }
+    
+    
+    @IBAction func abpunto(_ sender: Any) {
         
-        dibujar_numeros_u_operaciones_en_interfaz()
     }
-    
-    @IBAction func boton_escoger_operacion_pulsado(_ sender: UIButton) {
-        boton_operacion.setTitle("Ñ", for: .normal)
-        if (estado_actual == estados_de_la_calculadora.seleccionar_numeros){
-            estado_actual = estados_de_la_calculadora.escoger_operacion
-            dibujar_numeros_u_operaciones_en_interfaz()
-        }
-    }
-    
-    func identificar_botones(){
-        //for componente in self.view.subviews{
-        for pila_de_componentes in vista_stack.subviews{
-            for boton in pila_de_componentes.subviews{
-                if let identificador = boton.restorationIdentifier{
-                    print(botones_interfaz[identificador])
-                    botones_interfaz[identificador]?.referencia_a_boton_interfaz = boton as? UIButton
-                }
-            }
-        }
-        
-        for elemento in botones_interfaz.values{
-            print(elemento.referencia_a_boton_interfaz?.restorationIdentifier)
-            elemento.referencia_a_boton_interfaz?.setTitle("Ñ", for: .normal)
-        }
-    }
-    
-    func inicializar_calculadora() -> Void{
-        crear_arreglo_botones()
-        identificar_botones()
-    }
-    
-    
-    
-    
-    func crear_arreglo_botones(){
-        botones_interfaz = IUBotonCalculadora.crear_arreglo_botones()
-    }
-    
-    func dibujar_numeros_u_operaciones_en_interfaz(){
-        if(estado_actual == estados_de_la_calculadora.escoger_operacion){
-            for elemento in botones_interfaz.values{
-                print(elemento.referencia_a_boton_interfaz?.restorationIdentifier)
-                elemento.referencia_a_boton_interfaz?.setTitle(elemento.operacion, for: .normal)
-            }
-        }
-        else if (estado_actual == estados_de_la_calculadora.seleccionar_numeros){
-            for elemento in botones_interfaz.values{
-                elemento.referencia_a_boton_interfaz?.setTitle(String(elemento.numero), for: .normal)
-            }
-        }
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
 }
