@@ -233,6 +233,7 @@
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="abpunto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m34-8h-npn"/>
+                                                            <action selector="apunto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WRr-5D-qoM"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evX-uq-VCN">

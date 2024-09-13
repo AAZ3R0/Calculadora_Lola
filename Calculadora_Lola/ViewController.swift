@@ -106,7 +106,15 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func apunto(_ sender: Any) {
+        Pantalla.text = Pantalla.text! + "."
+    }
+    
+    
     @IBAction func ablimpiar(_ sender: Any) {
+        Pantalla.text = ""
+        v1 = ""
+        v2 = ""
     }
     
     
@@ -142,10 +150,33 @@ class ViewController: UIViewController {
         v2 = Pantalla.text!
         switch operación{
         case 1:
-            let valor1 = (Int(v1)!)
-            let valor2 = (Int(v2)!)
+            let valor1 = (Double(v1)!)
+            let valor2 = (Double(v2)!)
             let resultado = valor1 + valor2
-            Pantalla.text = (String(resultado)!)
+            Pantalla.text = (String(resultado))
+            break
+            
+        case 2:
+            let valor1 = (Double(v1)!)
+            let valor2 = (Double(v2)!)
+            let resultado = valor1 - valor2
+            Pantalla.text = (String(resultado))
+            break
+            
+        case 3:
+            let valor1 = (Double(v1)!)
+            let valor2 = (Double(v2)!)
+            let resultado = valor1 * valor2
+            Pantalla.text = (String(resultado))
+            break
+        case 4:
+            let valor1 = (Double(v1)!)
+            let valor2 = (Double(v2)!)
+            let resultado = valor1 / valor2
+            Pantalla.text = (String(resultado))
+            break
+            
+        default:
             break
         }
     }
